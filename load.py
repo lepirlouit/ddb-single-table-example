@@ -30,26 +30,26 @@ def setup():
                 'AttributeType': 'S'
             },
             {
-            'AttributeName': 'data',
-            'AttributeType': 'S'
+                'AttributeName': 'data',
+                'AttributeType': 'S'
             }
         ],
         GlobalSecondaryIndexes=[
         {
             'IndexName': 'gsi_1',
             'KeySchema': [
-                    {
-                        'AttributeName': 'sk',
-                        'KeyType': 'HASH'
-                    },
-                    {
-                        'AttributeName': 'data',
-                        'KeyType': 'RANGE'
-                    },
-                    ],
-                    'Projection': {
-                        'ProjectionType': 'ALL'
-                    }
+                {
+                    'AttributeName': 'sk',
+                    'KeyType': 'HASH'
+                },
+                {
+                    'AttributeName': 'data',
+                    'KeyType': 'RANGE'
+                },
+                ],
+                'Projection': {
+                    'ProjectionType': 'ALL'
+                }
             },
         ],
         BillingMode='PAY_PER_REQUEST'
@@ -104,9 +104,11 @@ def load_csvs():
         row["supplierID"] = "suppliers#"+row["supplierID"]
         row["categoryID"] = "categories#"+row["categoryID"]
     for row in orders:
+        row["orderID"] = "orders#"+row["orderID"]
         row["employeeID"] = "employees#"+row["employeeID"]
         row["shipVia"] = "shippers#"+row["shipVia"]
     for row in order_details:
+        row["orderID"] = "orders#"+row["orderID"]
         row["productID"] = "products#"+row["productID"]
     for row in employees:
         row["employeeID"] = "employees#"+row["employeeID"]
